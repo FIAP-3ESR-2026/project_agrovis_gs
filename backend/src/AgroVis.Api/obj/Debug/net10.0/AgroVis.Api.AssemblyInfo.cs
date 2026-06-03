@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgroVis.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3124c10ad95a67ea2741fd93f31054194d0b9ae5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7e49642b24423a0a42102ccfd3423e32e46f6b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgroVis.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgroVis.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

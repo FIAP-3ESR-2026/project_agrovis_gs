@@ -1,6 +1,43 @@
 @AgroVis.Api_HostAddress = http://localhost:5234
 
-GET {{AgroVis.Api_HostAddress}}/weatherforecast/
+GET {{AgroVis.Api_HostAddress}}/api/alertas
 Accept: application/json
 
 ###
+
+GET {{AgroVis.Api_HostAddress}}/api/plantacoes
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/plantacoes/1
+Accept: application/json
+
+###
+
+POST {{AgroVis.Api_HostAddress}}/api/plantacoes
+Content-Type: application/json
+
+{
+  "nomePropriedade": "Fazenda Boa Esperança",
+  "cultura": "Milho",
+  "localizacao": "Barretos - SP",
+  "areaHectares": 85.4
+}
+
+###
+
+PUT {{AgroVis.Api_HostAddress}}/api/plantacoes/1
+Content-Type: application/json
+
+{
+  "nomePropriedade": "Fazenda Sol Nascente",
+  "cultura": "Soja",
+  "localizacao": "Ribeirão Preto - SP",
+  "areaHectares": 130.0
+}
+
+###
+
+DELETE {{AgroVis.Api_HostAddress}}/api/plantacoes/2
+Accept: application/json

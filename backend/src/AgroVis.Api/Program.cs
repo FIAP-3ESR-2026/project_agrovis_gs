@@ -11,6 +11,10 @@ builder.Services.AddControllers();
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddScoped<IPlantacaoRepository, PlantacaoRepository>();
+
+builder.Services.AddScoped<IPlantacaoService, PlantacaoService>();
+
 builder.Services.AddDbContext<AgroVisDbContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
