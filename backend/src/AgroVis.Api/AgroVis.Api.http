@@ -41,3 +41,28 @@ Content-Type: application/json
 
 DELETE {{AgroVis.Api_HostAddress}}/api/plantacoes/2
 Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/leituras-climaticas
+Accept: application/json
+
+###
+
+POST {{AgroVis.Api_HostAddress}}/api/leituras-climaticas
+Content-Type: application/json
+
+{
+  "temperaturaCelsius": 39.5,
+  "umidadePercentual": 24.0,
+  "velocidadeVentoKmh": 32.0,
+  "precipitacaoMm": 0.0,
+  "observacaoVisual": "Solo seco e baixa cobertura de nuvens identificada por imagem.",
+  "sateliteId": 1,
+  "plantacaoId": 1
+}
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas
+Accept: application/json
