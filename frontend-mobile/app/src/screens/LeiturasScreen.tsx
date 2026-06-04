@@ -16,6 +16,7 @@ import {
   listarLeiturasClimaticas,
 } from "../services/leituraClimaticaService";
 import { LeituraClimatica } from "../types/agrovis";
+import { StateMessage } from "../components/StateMessage";
 import { colors, radius, spacing } from "../styles/theme";
 
 export function LeiturasScreen() {
@@ -28,6 +29,7 @@ export function LeiturasScreen() {
   const [vento, setVento] = useState("");
   const [chuva, setChuva] = useState("");
   const [observacao, setObservacao] = useState("");
+  const [error, setError] = useState(false);
 
   async function carregarLeituras() {
     try {
@@ -100,6 +102,21 @@ export function LeiturasScreen() {
     );
   }
 
+  if (error) {
+  return (
+    <View style={styles.center}>
+      <StateMessage
+        title="Erro ao carregar leituras"
+        description="Não foi possível buscar o histórico climático. Confirme se a API está rodando."
+        buttonText="Tentar novamente"
+        onPress={() => {
+          setLoading(true);
+          carregarLeituras();
+        }}
+      />
+    </View>
+  );
+}
   return (
     <ScrollView
       style={styles.container}
