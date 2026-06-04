@@ -11,26 +11,31 @@ import { InfoCard } from "../components/InfoCard";
 import { buscarDashboardPlantacao } from "../services/dashboardService";
 import { buscarPreferencias } from "../storage/preferenciasStorage";
 import { DashboardPlantacao } from "../types/agrovis";
+import { StateMessage } from "../components/StateMessage";
 import { colors, spacing } from "../styles/theme";
 
 export function DashboardScreen() {
   const [dashboard, setDashboard] = useState<DashboardPlantacao | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState(false);
 
-  async function carregarDashboard() {
-    try {
-      const preferencias = await buscarPreferencias();
-      const dados = await buscarDashboardPlantacao(preferencias.plantacaoPadraoId);
-      setDashboard(dados);
-    } catch (error) {
-      console.log("Erro ao carregar dashboard:", error);
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
+async function carregarDashboard() {
+  try {
+    setError(false);
+
+    const preferencias = await buscarPreferencias();
+    const dados = await buscarDashboardPlantacao(preferencias.plantacaoPadraoId);
+
+    setDashboard(dados);
+  } catch (error) {
+    console.log("Erro ao carregar dashboard:", error);
+    setError(true);
+  } finally {
+    setLoading(false);
+    setRefreshing(false);
   }
-
+}
   useEffect(() => {
     carregarDashboard();
   }, []);
@@ -44,17 +49,21 @@ export function DashboardScreen() {
     );
   }
 
-  if (!dashboard) {
-    return (
-      <View style={styles.center}>
-        <Text style={styles.errorTitle}>Não foi possível carregar os dados.</Text>
-        <Text style={styles.errorText}>
-          Verifique se a API está rodando em http://localhost:5234.
-        </Text>
-      </View>
-    );
-  }
-
+if (error || !dashboard) {
+  return (
+    <View style={styles.center}>
+      <StateMessage
+        title="Não foi possível carregar os dados"
+        description="Verifique se a API está rodando e se a URL configurada no app está correta."
+        buttonText="Tentar novamente"
+        onPress={() => {
+          setLoading(true);
+          carregarDashboard();
+        }}
+      />
+    </View>
+  );
+}
   return (
     <ScrollView
       style={styles.container}

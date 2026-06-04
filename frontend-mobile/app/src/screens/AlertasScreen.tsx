@@ -10,24 +10,29 @@ import {
 import { InfoCard } from "../components/InfoCard";
 import { listarAlertasPendentes } from "../services/alertaService";
 import { Alerta } from "../types/agrovis";
+import { StateMessage } from "../components/StateMessage";
 import { colors, spacing } from "../styles/theme";
 
 export function AlertasScreen() {
   const [alertas, setAlertas] = useState<Alerta[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState(false);
 
-  async function carregarAlertas() {
-    try {
-      const dados = await listarAlertasPendentes();
-      setAlertas(dados);
-    } catch (error) {
-      console.log("Erro ao carregar alertas:", error);
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
+async function carregarAlertas() {
+  try {
+    setError(false);
+
+    const dados = await listarAlertasPendentes();
+    setAlertas(dados);
+  } catch (error) {
+    console.log("Erro ao carregar alertas:", error);
+    setError(true);
+  } finally {
+    setLoading(false);
+    setRefreshing(false);
   }
+}
 
   useEffect(() => {
     carregarAlertas();
@@ -40,8 +45,23 @@ export function AlertasScreen() {
         <Text style={styles.loadingText}>Carregando alertas...</Text>
       </View>
     );
+    
   }
-
+if (error) {
+  return (
+    <View style={styles.center}>
+      <StateMessage
+        title="Erro ao carregar alertas"
+        description="Não foi possível buscar os alertas pendentes. Verifique se o backend está ativo."
+        buttonText="Tentar novamente"
+        onPress={() => {
+          setLoading(true);
+          carregarAlertas();
+        }}
+      />
+    </View>
+  );
+}
   return (
     <ScrollView
       style={styles.container}

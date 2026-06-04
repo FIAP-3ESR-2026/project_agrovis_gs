@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { InfoCard } from "../components/InfoCard";
 import { listarPlantacoes } from "../services/plantacaoService";
+import { StateMessage } from "../components/StateMessage";
 import {
   buscarPreferencias,
   salvarPreferencias,
@@ -25,28 +26,27 @@ export function PlantacoesScreen() {
   );
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState(false);
 
-  async function carregarDados() {
-    try {
-      const [dadosPlantacoes, dadosPreferencias] = await Promise.all([
-        listarPlantacoes(),
-        buscarPreferencias(),
-      ]);
+async function carregarDados() {
+  try {
+    setError(false);
 
-      setPlantacoes(dadosPlantacoes);
-      setPreferencias(dadosPreferencias);
-    } catch (error) {
-      console.log("Erro ao carregar plantações:", error);
+    const [dadosPlantacoes, dadosPreferencias] = await Promise.all([
+      listarPlantacoes(),
+      buscarPreferencias(),
+    ]);
 
-      Alert.alert(
-        "Erro",
-        "Não foi possível carregar as plantações. Verifique se a API está rodando."
-      );
-    } finally {
-      setLoading(false);
-      setRefreshing(false);
-    }
+    setPlantacoes(dadosPlantacoes);
+    setPreferencias(dadosPreferencias);
+  } catch (error) {
+    console.log("Erro ao carregar plantações:", error);
+    setError(true);
+  } finally {
+    setLoading(false);
+    setRefreshing(false);
   }
+}
 
   async function definirPlantacaoPadrao(plantacao: Plantacao) {
     if (!preferencias) {
@@ -79,7 +79,21 @@ export function PlantacoesScreen() {
       </View>
     );
   }
-
+if (error) {
+  return (
+    <View style={styles.center}>
+      <StateMessage
+        title="Erro ao carregar plantações"
+        description="Não foi possível buscar as plantações cadastradas. Verifique a conexão com a API."
+        buttonText="Tentar novamente"
+        onPress={() => {
+          setLoading(true);
+          carregarDados();
+        }}
+      />
+    </View>
+  );
+}
   return (
     <ScrollView
       style={styles.container}

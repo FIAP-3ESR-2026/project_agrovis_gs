@@ -1,48 +1,52 @@
-const API_BASE_URL = "http://localhost:5234";
+import { getApiBaseUrl } from "../config/apiConfig";
+
+const API_BASE_URL = getApiBaseUrl();
+
+async function apiRequest<T>(
+  endpoint: string,
+  options?: RequestInit
+): Promise<T> {
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.status}`);
+    }
+
+    if (response.status === 204) {
+      return null as T;
+    }
+
+    return response.json();
+  } catch (error) {
+    console.log("Erro de comunicação com a API:", error);
+    throw new Error(
+      "Não foi possível conectar com a API do AgroVis. Verifique se o backend está rodando."
+    );
+  }
+}
 
 export async function apiGet<T>(endpoint: string): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`);
-
-  if (!response.ok) {
-    throw new Error("Erro ao buscar dados da API.");
-  }
-
-  return response.json();
+  return apiRequest<T>(endpoint);
 }
 
 export async function apiPost<TBody, TResponse>(
   endpoint: string,
   body: TBody
 ): Promise<TResponse> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  return apiRequest<TResponse>(endpoint, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
   });
-
-  if (!response.ok) {
-    throw new Error("Erro ao enviar dados para a API.");
-  }
-
-  return response.json();
 }
 
 export async function apiPatch<T>(endpoint: string): Promise<T | null> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+  return apiRequest<T | null>(endpoint, {
     method: "PATCH",
   });
-
-  if (!response.ok) {
-    throw new Error("Erro ao atualizar dados da API.");
-  }
-
-  if (response.status === 204) {
-    return null;
-  }
-
-  return response.json();
 }
 
 export { API_BASE_URL };
