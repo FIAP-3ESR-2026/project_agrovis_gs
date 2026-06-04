@@ -21,6 +21,9 @@ builder.Services.AddScoped<ILeituraClimaticaService, LeituraClimaticaService>();
 builder.Services.AddScoped<IAlertaRepository, AlertaRepository>();
 builder.Services.AddScoped<IAlertaService, AlertaService>();
 
+builder.Services.AddScoped<ISateliteRepository, SateliteRepository>();
+builder.Services.AddScoped<ISateliteService, SateliteService>();
+
 // Banco de Dados
 builder.Services.AddDbContext<AgroVisDbContext>(options =>
 {
@@ -83,9 +86,9 @@ using (var scope = app.Services.CreateScope())
         context.Alertas.Add(alerta);
         context.SaveChanges();
     }
-} // <-- A CHAVE QUE FALTAVA ESTAVA AQUI! (Fechando o bloco 'using')
+} 
 
-// --- Pipeline de Requisições HTTP (Middlewares) ---
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
