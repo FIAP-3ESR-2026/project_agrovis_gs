@@ -24,6 +24,9 @@ builder.Services.AddScoped<IAlertaService, AlertaService>();
 builder.Services.AddScoped<ISateliteRepository, SateliteRepository>();
 builder.Services.AddScoped<ISateliteService, SateliteService>();
 
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
+
 // Banco de Dados
 builder.Services.AddDbContext<AgroVisDbContext>(options =>
 {
