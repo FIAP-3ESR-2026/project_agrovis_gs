@@ -39,3 +39,18 @@ export interface PreferenciasUsuario {
   plantacaoPadraoId: string;
   notificacoesAtivas: boolean;
 }
+
+export interface Alerta {
+  id: number;
+  titulo: string;
+  mensagem: string;
+  tipo: TipoAlerta;
+  tipoDescricao: string;
+  nivelRisco: NivelRisco;
+  nivelRiscoDescricao: string;
+  resolvido: boolean;
+  criadoEm: string;
+  plantacaoId: number;
+  nomePropriedade?: string;
+  cultura?: string;
+}
