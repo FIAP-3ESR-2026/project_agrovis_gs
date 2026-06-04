@@ -66,3 +66,40 @@ Content-Type: application/json
 
 GET {{AgroVis.Api_HostAddress}}/api/alertas
 Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/satelites
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/satelites/1
+Accept: application/json
+
+###
+
+POST {{AgroVis.Api_HostAddress}}/api/satelites
+Content-Type: application/json
+
+{
+  "nome": "AgroSat Orbital-2",
+  "origem": "Nova Economia Espacial",
+  "tipoSensor": "Radar climático e infravermelho"
+}
+
+###
+
+PUT {{AgroVis.Api_HostAddress}}/api/satelites/1
+Content-Type: application/json
+
+{
+  "nome": "AgroSat Sentinel-1",
+  "origem": "Nova Economia Espacial",
+  "tipoSensor": "Multiespectral, climático e térmico"
+}
+
+###
+
+DELETE {{AgroVis.Api_HostAddress}}/api/satelites/2
+Accept: application/json
