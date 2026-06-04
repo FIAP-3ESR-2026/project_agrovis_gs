@@ -103,3 +103,7 @@ Content-Type: application/json
 
 DELETE {{AgroVis.Api_HostAddress}}/api/satelites/2
 Accept: application/json
+
+
+GET {{AgroVis.Api_HostAddress}}/api/dashboard/plantacao/1
+Accept: application/json
