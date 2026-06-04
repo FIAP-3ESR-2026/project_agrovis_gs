@@ -2,12 +2,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { DashboardScreen } from "../screens/DashboardScreen";
 import { AlertasScreen } from "../screens/AlertasScreen";
+import { LeiturasScreen } from "../screens/LeiturasScreen";
 import { PreferenciasScreen } from "../screens/PreferenciasScreen";
 import { colors } from "../styles/theme";
 
 export type RootTabParamList = {
   Dashboard: undefined;
   Alertas: undefined;
+  Leituras: undefined;
   Preferencias: undefined;
 };
 
@@ -42,6 +44,12 @@ export function AppNavigator() {
           component={AlertasScreen}
           options={{ title: "Alertas" }}
         />
+
+        <Tab.Screen
+        name="Leituras"
+        component={LeiturasScreen}
+         options={{ title: "Leituras" }}
+        />  
 
         <Tab.Screen
           name="Preferencias"
