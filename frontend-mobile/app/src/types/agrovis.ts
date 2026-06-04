@@ -79,3 +79,12 @@ export interface LeituraClimaticaCreate {
   sateliteId: number;
   plantacaoId: number;
 }
+
+export interface Plantacao {
+  id: number;
+  nomePropriedade: string;
+  cultura: string;
+  localizacao: string;
+  areaHectares: number;
+  criadoEm: string;
+}

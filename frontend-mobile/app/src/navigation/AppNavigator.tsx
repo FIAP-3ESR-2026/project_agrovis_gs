@@ -4,12 +4,14 @@ import { DashboardScreen } from "../screens/DashboardScreen";
 import { AlertasScreen } from "../screens/AlertasScreen";
 import { LeiturasScreen } from "../screens/LeiturasScreen";
 import { PreferenciasScreen } from "../screens/PreferenciasScreen";
+import { PlantacoesScreen } from "../screens/PlantacoesScreen";
 import { colors } from "../styles/theme";
-
 export type RootTabParamList = {
+
   Dashboard: undefined;
   Alertas: undefined;
   Leituras: undefined;
+  Plantacoes: undefined;
   Preferencias: undefined;
 };
 
@@ -50,7 +52,11 @@ export function AppNavigator() {
         component={LeiturasScreen}
          options={{ title: "Leituras" }}
         />  
-
+        <Tab.Screen
+         name="Plantacoes"
+        component={PlantacoesScreen}
+         options={{ title: "Plantações" }}
+        />
         <Tab.Screen
           name="Preferencias"
           component={PreferenciasScreen}
