@@ -1,5 +1,6 @@
 using AgroVis.Api.Dtos;
 using AgroVis.Api.Entities;
+using AgroVis.Api.Enums;
 using AgroVis.Api.Repositories;
 
 namespace AgroVis.Api.Services;
@@ -13,9 +14,19 @@ public class AlertaService : IAlertaService
         _alertaRepository = alertaRepository;
     }
 
-    public async Task<List<AlertaResponseDto>> ListarAsync()
+    public async Task<List<AlertaResponseDto>> ListarAsync(
+        int? plantacaoId,
+        TipoAlerta? tipo,
+        NivelRisco? nivelRisco,
+        bool? resolvido
+    )
     {
-        var alertas = await _alertaRepository.ListarAsync();
+        var alertas = await _alertaRepository.ListarAsync(
+            plantacaoId,
+            tipo,
+            nivelRisco,
+            resolvido
+        );
 
         return alertas.Select(MapearParaResponse).ToList();
     }
@@ -61,10 +72,14 @@ public class AlertaService : IAlertaService
             Titulo = alerta.Titulo,
             Mensagem = alerta.Mensagem,
             Tipo = alerta.Tipo,
+            TipoDescricao = alerta.Tipo.ToString(),
             NivelRisco = alerta.NivelRisco,
+            NivelRiscoDescricao = alerta.NivelRisco.ToString(),
             Resolvido = alerta.Resolvido,
             CriadoEm = alerta.CriadoEm,
-            PlantacaoId = alerta.PlantacaoId
+            PlantacaoId = alerta.PlantacaoId,
+            NomePropriedade = alerta.Plantacao?.NomePropriedade,
+            Cultura = alerta.Plantacao?.Cultura
         };
     }
 }
