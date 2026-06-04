@@ -1,5 +1,6 @@
 using AgroVis.Api.Data;
 using AgroVis.Api.Entities;
+using AgroVis.Api.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace AgroVis.Api.Repositories;
@@ -13,11 +14,42 @@ public class AlertaRepository : IAlertaRepository
         _context = context;
     }
 
-    public async Task<List<Alerta>> ListarAsync()
+    public async Task<List<Alerta>> ListarAsync(
+        int? plantacaoId,
+        TipoAlerta? tipo,
+        NivelRisco? nivelRisco,
+        bool? resolvido
+    )
     {
-        return await _context.Alertas
+        var query = _context.Alertas
             .AsNoTracking()
-            .OrderByDescending(alerta => alerta.CriadoEm)
+            .Include(alerta => alerta.Plantacao)
+            .AsQueryable();
+
+        if (plantacaoId.HasValue)
+        {
+            query = query.Where(alerta => alerta.PlantacaoId == plantacaoId.Value);
+        }
+
+        if (tipo.HasValue)
+        {
+            query = query.Where(alerta => alerta.Tipo == tipo.Value);
+        }
+
+        if (nivelRisco.HasValue)
+        {
+            query = query.Where(alerta => alerta.NivelRisco == nivelRisco.Value);
+        }
+
+        if (resolvido.HasValue)
+        {
+            query = query.Where(alerta => alerta.Resolvido == resolvido.Value);
+        }
+
+        return await query
+            .OrderBy(alerta => alerta.Resolvido)
+            .ThenByDescending(alerta => alerta.NivelRisco)
+            .ThenByDescending(alerta => alerta.CriadoEm)
             .ToListAsync();
     }
 
@@ -25,6 +57,7 @@ public class AlertaRepository : IAlertaRepository
     {
         return await _context.Alertas
             .AsNoTracking()
+            .Include(alerta => alerta.Plantacao)
             .FirstOrDefaultAsync(alerta => alerta.Id == id);
     }
 

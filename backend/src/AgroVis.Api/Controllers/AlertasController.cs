@@ -1,4 +1,5 @@
 using AgroVis.Api.Dtos;
+using AgroVis.Api.Enums;
 using AgroVis.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,19 @@ public class AlertasController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<AlertaResponseDto>>> Listar()
+    public async Task<ActionResult<List<AlertaResponseDto>>> Listar(
+        [FromQuery] int? plantacaoId,
+        [FromQuery] TipoAlerta? tipo,
+        [FromQuery] NivelRisco? nivelRisco,
+        [FromQuery] bool? resolvido
+    )
     {
-        var alertas = await _alertaService.ListarAsync();
+        var alertas = await _alertaService.ListarAsync(
+            plantacaoId,
+            tipo,
+            nivelRisco,
+            resolvido
+        );
 
         return Ok(alertas);
     }

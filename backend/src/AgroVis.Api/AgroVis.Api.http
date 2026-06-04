@@ -103,3 +103,38 @@ Content-Type: application/json
 
 DELETE {{AgroVis.Api_HostAddress}}/api/satelites/2
 Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas?plantacaoId=1
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas?tipo=Seca
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas?nivelRisco=Alto
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas?resolvido=false
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas?plantacaoId=1&tipo=Seca&nivelRisco=Alto&resolvido=false
+Accept: application/json
+
+###
+
+PATCH {{AgroVis.Api_HostAddress}}/api/alertas/1/resolver
+Accept: application/json
