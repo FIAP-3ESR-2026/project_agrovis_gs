@@ -54,3 +54,28 @@ export interface Alerta {
   nomePropriedade?: string;
   cultura?: string;
 }
+
+
+export interface LeituraClimatica {
+  id: number;
+  temperaturaCelsius: number;
+  umidadePercentual: number;
+  velocidadeVentoKmh: number;
+  precipitacaoMm: number;
+  observacaoVisual: string;
+  dataLeitura: string;
+  sateliteId: number;
+  plantacaoId: number;
+  nomeSatelite?: string;
+  nomePropriedade?: string;
+}
+
+export interface LeituraClimaticaCreate {
+  temperaturaCelsius: number;
+  umidadePercentual: number;
+  velocidadeVentoKmh: number;
+  precipitacaoMm: number;
+  observacaoVisual: string;
+  sateliteId: number;
+  plantacaoId: number;
+}
