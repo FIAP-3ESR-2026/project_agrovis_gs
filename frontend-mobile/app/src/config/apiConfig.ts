@@ -1,6 +1,6 @@
 import { Platform } from "react-native";
 
-const LOCALHOST_URL = "http://localhost:5234";
+const LOCALHOST_URL = "http://192.168.15.2:5234";
 
 // Use esta URL quando estiver testando no celular físico.
 // Troque pelo IPv4 da sua máquina, se necessário.
