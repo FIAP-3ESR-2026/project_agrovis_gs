@@ -76,10 +76,6 @@ if (error) {
         />
       }
     >
-      <Text style={styles.header}>Alertas</Text>
-      <Text style={styles.subtitle}>
-        Ocorrências pendentes identificadas pela análise climática
-      </Text>
 
       {alertas.length === 0 ? (
         <View style={styles.emptyBox}>

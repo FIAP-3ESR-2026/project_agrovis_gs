@@ -42,10 +42,6 @@ export function PreferenciasScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Preferências</Text>
-      <Text style={styles.subtitle}>
-        Configure os dados locais usados pelo aplicativo AgroVis
-      </Text>
 
       <View style={styles.formGroup}>
         <Text style={styles.label}>Nome do produtor</Text>

@@ -1,13 +1,16 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
 import { DashboardScreen } from "../screens/DashboardScreen";
 import { AlertasScreen } from "../screens/AlertasScreen";
 import { LeiturasScreen } from "../screens/LeiturasScreen";
-import { PreferenciasScreen } from "../screens/PreferenciasScreen";
 import { PlantacoesScreen } from "../screens/PlantacoesScreen";
+import { PreferenciasScreen } from "../screens/PreferenciasScreen";
+import { AppHeader } from "../components/AppHeader";
+import { AppFooter } from "../components/AppFooter";
 import { colors } from "../styles/theme";
-export type RootTabParamList = {
 
+export type RootTabParamList = {
   Dashboard: undefined;
   Alertas: undefined;
   Leituras: undefined;
@@ -21,24 +24,23 @@ export function AppNavigator() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: colors.primary,
-          tabBarInactiveTintColor: colors.muted,
-          tabBarStyle: {
-            backgroundColor: colors.card,
-            borderTopColor: colors.border,
+        tabBar={(props) => <AppFooter {...props} />}
+        screenOptions={({ route, navigation }) => ({
+          header: () => (
+            <AppHeader
+              navigation={navigation}
+              currentRouteName={route.name}
+            />
+          ),
+          sceneStyle: {
+            backgroundColor: colors.background,
           },
-          tabBarLabelStyle: {
-            fontSize: 12,
-            fontWeight: "600",
-          },
-        }}
+        })}
       >
         <Tab.Screen
           name="Dashboard"
           component={DashboardScreen}
-          options={{ title: "Dashboard" }}
+          options={{ title: "Início" }}
         />
 
         <Tab.Screen
@@ -48,15 +50,17 @@ export function AppNavigator() {
         />
 
         <Tab.Screen
-        name="Leituras"
-        component={LeiturasScreen}
-         options={{ title: "Leituras" }}
-        />  
-        <Tab.Screen
-         name="Plantacoes"
-        component={PlantacoesScreen}
-         options={{ title: "Plantações" }}
+          name="Leituras"
+          component={LeiturasScreen}
+          options={{ title: "Leituras" }}
         />
+
+        <Tab.Screen
+          name="Plantacoes"
+          component={PlantacoesScreen}
+          options={{ title: "Plantações" }}
+        />
+
         <Tab.Screen
           name="Preferencias"
           component={PreferenciasScreen}
