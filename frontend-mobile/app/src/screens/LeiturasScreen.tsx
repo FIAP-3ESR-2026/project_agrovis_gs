@@ -131,11 +131,6 @@ export function LeiturasScreen() {
         />
       }
     >
-      <Text style={styles.header}>Leituras</Text>
-      <Text style={styles.subtitle}>
-        Registre e acompanhe dados climáticos da plantação
-      </Text>
-
       <View style={styles.formBox}>
         <Text style={styles.formTitle}>Nova leitura climática</Text>
 

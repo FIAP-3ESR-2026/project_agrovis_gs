@@ -78,10 +78,6 @@ if (error || !dashboard) {
         />
       }
     >
-      <Text style={styles.header}>AgroVis</Text>
-      <Text style={styles.subtitle}>
-        Monitoramento inteligente da sua plantação
-      </Text>
 
       <View style={styles.statusBox}>
         <Text style={styles.statusLabel}>Status geral</Text>

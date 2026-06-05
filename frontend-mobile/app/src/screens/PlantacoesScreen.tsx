@@ -108,10 +108,6 @@ if (error) {
         />
       }
     >
-      <Text style={styles.header}>Plantações</Text>
-      <Text style={styles.subtitle}>
-        Consulte as áreas monitoradas e escolha a plantação padrão do app
-      </Text>
 
       {plantacoes.length === 0 ? (
         <View style={styles.emptyBox}>
