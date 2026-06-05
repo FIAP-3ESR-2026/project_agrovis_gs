@@ -1,0 +1,109 @@
+@AgroVis.Api_HostAddress = http://localhost:5234
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/plantacoes
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/plantacoes/1
+Accept: application/json
+
+###
+
+POST {{AgroVis.Api_HostAddress}}/api/plantacoes
+Content-Type: application/json
+
+{
+  "nomePropriedade": "Fazenda Boa Esperança",
+  "cultura": "Milho",
+  "localizacao": "Barretos - SP",
+  "areaHectares": 85.4
+}
+
+###
+
+PUT {{AgroVis.Api_HostAddress}}/api/plantacoes/1
+Content-Type: application/json
+
+{
+  "nomePropriedade": "Fazenda Sol Nascente",
+  "cultura": "Soja",
+  "localizacao": "Ribeirão Preto - SP",
+  "areaHectares": 130.0
+}
+
+###
+
+DELETE {{AgroVis.Api_HostAddress}}/api/plantacoes/2
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/leituras-climaticas
+Accept: application/json
+
+###
+
+POST {{AgroVis.Api_HostAddress}}/api/leituras-climaticas
+Content-Type: application/json
+
+{
+  "temperaturaCelsius": 39.5,
+  "umidadePercentual": 24.0,
+  "velocidadeVentoKmh": 32.0,
+  "precipitacaoMm": 0.0,
+  "observacaoVisual": "Solo seco e baixa cobertura de nuvens identificada por imagem.",
+  "sateliteId": 1,
+  "plantacaoId": 1
+}
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/alertas
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/satelites
+Accept: application/json
+
+###
+
+GET {{AgroVis.Api_HostAddress}}/api/satelites/1
+Accept: application/json
+
+###
+
+POST {{AgroVis.Api_HostAddress}}/api/satelites
+Content-Type: application/json
+
+{
+  "nome": "AgroSat Orbital-2",
+  "origem": "Nova Economia Espacial",
+  "tipoSensor": "Radar climático e infravermelho"
+}
+
+###
+
+PUT {{AgroVis.Api_HostAddress}}/api/satelites/1
+Content-Type: application/json
+
+{
+  "nome": "AgroSat Sentinel-1",
+  "origem": "Nova Economia Espacial",
+  "tipoSensor": "Multiespectral, climático e térmico"
+}
+
+###
+
+DELETE {{AgroVis.Api_HostAddress}}/api/satelites/2
+Accept: application/json
+
+
+GET {{AgroVis.Api_HostAddress}}/api/dashboard/plantacao/1
+Accept: application/json
