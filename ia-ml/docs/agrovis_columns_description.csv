@@ -1,0 +1,11 @@
+Short_Name,Parameter_Name,Description
+PRECTOTCORR,Precipitation Corrected,The average MERRA-2 bias corrected total precipitation at the surface of the earth.
+GWETROOT,Root Zone Soil Wetness,"The amount of water and water vapor available to plants in the root zone, generally considered to be the upper 1 m of soil, expressed as the proportion of water present in a given amount of soil. Values range from 0 for completely dry conditions to 1 for completely saturated soil."
+GWETTOP,Surface Soil Wetness,The amount of water and water vapor present in the soil. Top indicates the upper 5 cm of soil. Values range from 0 for completely dry conditions to 1 for completely saturated soil.
+T2M_MAX,Temperature at 2 Meters Maximum,The maximum hourly air (dry bulb) temperature at 2 meters above the surface of the earth in the period of interest.
+RH2M,Relative Humidity at 2 Meters,"The ratio of vapor pressure to the saturation vapor pressure with respect to a plane surface of pure water, expressed in percent."
+WS2M,Wind Speed at 2 Meters,The average of wind speed at 2 meters above the surface of the earth.
+ALLSKY_SFC_SW_DWN,All Sky Surface Shortwave Downward Irradiance,"The total solar irradiance incident (direct plus diffuse) on a horizontal plane at the surface of the earth under all sky conditions. An alternative term for the total solar irradiance is the ""Global Horizontal Irradiance"" or GHI."
+ALLSKY_SFC_PAR_TOT,All Sky Surface Total PAR,The total (direct plus diffuse) Photosynthetically Active Radiation (PAR) incident on a horizontal plane at the surface of the earth under all sky conditions.
+LATITUDE,Latitude,Latitude do ponto de coleta de dados.
+LONGITUDE,Longitude,Longitude do ponto de coleta de dados.
