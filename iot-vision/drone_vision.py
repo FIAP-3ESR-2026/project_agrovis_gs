@@ -6,8 +6,8 @@ import time
 # ==========================================
 # CONFIGURAÇÕES DE IOT (NUVEM)
 # ==========================================
-IOT_URL = "https://webhook.site/9cf80a91-1c9c-4537-a4db-05bd096c16f6"
-IOT_HEADERS = {"Content-Type": "application/json"}  # O Ubidots exigirá um token aqui
+IOT_URL = "https://webhook.site/e1a2af55-a80f-4ed9-9d42-7009a755ed38"
+IOT_HEADERS = {"Content-Type": "application/json"}
 
 # Temporizador para não travar a câmara
 last_send_time = time.time()

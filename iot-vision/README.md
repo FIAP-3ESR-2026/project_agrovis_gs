@@ -38,13 +38,32 @@ Câmera / Vídeo → Frame → Conversão HSV → Máscara de cor → Detecção
 - Python 3.8 ou superior
 - Arquivo de vídeo `simulacao_drone_agrovis.mp4` na mesma pasta dos scripts
 
-### 1. Instalar as dependências
+### 1. Clonar o repositório e entrar na pasta correta
+
+```bash
+git clone https://github.com/seu-usuario/project_agrovis_gs.git
+cd project_agrovis_gs/iot-vision
+```
+
+### 2. Criar e ativar o ambiente virtual (recomendado)
+
+```bash
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# macOS / Linux
+source .venv/bin/activate
+```
+
+### 3. Instalar as dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Calibrar os valores HSV (opcional)
+### 4. Calibrar os valores HSV (opcional)
 
 Execute o calibrador para ajustar a detecção ao seu ambiente de vídeo:
 
@@ -56,7 +75,7 @@ Use os sliders para isolar a cor das anomalias. Ao pressionar `q`, os valores fi
 
 > **Controles:** `Espaço` para pausar o vídeo | `Q` para sair e exibir os valores
 
-### 3. Executar o drone
+### 5. Executar o drone
 
 ```bash
 python drone_vision.py
@@ -72,11 +91,12 @@ O sistema iniciará o processamento do vídeo, exibirá o HUD com as anomalias d
 
 ```
 project_agrovis_gs/
-├── calibrador_hsv.py          # Ferramenta de calibração HSV interativa
-├── drone_vision.py            # Motor principal de visão e IoT
-├── simulacao_drone_agrovis.mp4 # Vídeo de simulação da lavoura
-├── requirements.txt           # Dependências do projeto
-└── README.md                  # Este arquivo
+└── iot-vision/
+    ├── calibrador_hsv.py           # Ferramenta de calibração HSV interativa
+    ├── drone_vision.py             # Motor principal de visão e IoT
+    ├── simulacao_drone_agrovis.mp4 # Vídeo de simulação da lavoura
+    ├── requirements.txt            # Dependências do projeto
+    └── README.md                   # Este arquivo
 ```
 
 ---

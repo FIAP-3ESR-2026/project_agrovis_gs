@@ -28,33 +28,33 @@ while True:
             cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
             continue
 
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    l_h = cv2.getTrackbarPos("L - H", "Calibracao HSV")
-    l_s = cv2.getTrackbarPos("L - S", "Calibracao HSV")
-    l_v = cv2.getTrackbarPos("L - V", "Calibracao HSV")
-    u_h = cv2.getTrackbarPos("U - H", "Calibracao HSV")
-    u_s = cv2.getTrackbarPos("U - S", "Calibracao HSV")
-    u_v = cv2.getTrackbarPos("U - V", "Calibracao HSV")
+        l_h = cv2.getTrackbarPos("L - H", "Calibracao HSV")
+        l_s = cv2.getTrackbarPos("L - S", "Calibracao HSV")
+        l_v = cv2.getTrackbarPos("L - V", "Calibracao HSV")
+        u_h = cv2.getTrackbarPos("U - H", "Calibracao HSV")
+        u_s = cv2.getTrackbarPos("U - S", "Calibracao HSV")
+        u_v = cv2.getTrackbarPos("U - V", "Calibracao HSV")
 
-    lower_bound = np.array([l_h, l_s, l_v])
-    upper_bound = np.array([u_h, u_s, u_v])
+        lower_bound = np.array([l_h, l_s, l_v])
+        upper_bound = np.array([u_h, u_s, u_v])
 
-    mask = cv2.inRange(hsv, lower_bound, upper_bound)
-    result = cv2.bitwise_and(frame, frame, mask=mask)
+        mask = cv2.inRange(hsv, lower_bound, upper_bound)
+        result = cv2.bitwise_and(frame, frame, mask=mask)
 
-    # Exibição das três janelas
-    cv2.imshow("Video Original", frame)  # Nova janela adicionada
-    cv2.imshow("Mascara", mask)
-    cv2.imshow("Resultado", result)
+        # Exibição das três janelas
+        cv2.imshow("Video Original", frame)  # Nova janela adicionada
+        cv2.imshow("Mascara", mask)
+        cv2.imshow("Resultado", result)
 
-    key = cv2.waitKey(1) & 0xFF
-    if key == ord(' '):
-        pausado = not pausado
-    if key == ord('q'):
-        # Exibição dos valores capturados no console
-        print(f"\nValores finais: Lower={list(lower_bound)}, Upper={list(upper_bound)}")
-        break
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord(' '):
+            pausado = not pausado
+        if key == ord('q'):
+            # Exibição dos valores capturados no console
+            print(f"\nValores finais: Lower={list(lower_bound)}, Upper={list(upper_bound)}")
+            break
 
 cap.release()
 cv2.destroyAllWindows()
